@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+
+    <mvc:annotation-driven /> <!-- Annotation 활성화 -->
+    <context:component-scan base-package="com.gifwebfront.Controller.MVC"> <!-- Component 패키지 지정 -->
+        <!--<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>-->
+        <!--<context:include-filter expression="org.springframework.stereotype.Service" type="annotation"/>-->
+        <!--<context:include-filter expression="org.springframework.stereotype.Repository" type="annotation"/>-->
+    </context:component-scan>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" />
+        <property name="maxInMemorySize" value="100000000" />
+    </bean>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+</beans>
